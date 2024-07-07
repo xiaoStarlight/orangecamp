@@ -1,6 +1,6 @@
 def load_cool_program(file: str):
     variables={}
-    lines=file.strip().split()
+    lines=file.strip().split('\n')
     for line in lines:
         if line.startswith('(return)'):
             variable_name=line.strip('(return)').strip()
