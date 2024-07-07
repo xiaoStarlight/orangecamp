@@ -4,7 +4,9 @@ def load_cool_program(file: str):
     for line in lines:
         if line.startswith('(return)'):
             variable_name=line.strip('(return)').strip()
-            if variable_name in variables:
+            if variable_name.isdigit():
+                print(variable_name)
+            elif variable_name in variables:
                 print(variables[variable_name])
             else:
                 print("Undefined variable")
@@ -19,32 +21,34 @@ def eval_line(line,variables):
         if line[1].isdigit():
             variables[line[0]]+=int(line[1])
         else:
-            variables[line[0]]+=variables(line[1])
+            variables[line[0]]+=variables[line[1]]
     elif '-=' in line:
         line="".join(line.split())
         line = line.split('-=')
         if line[1].isdigit():
             variables[line[0]]-=int(line[1])
         else:
-            variables[line[0]]-=variables(line[1])
+            variables[line[0]]-=variables[line[1]]
     elif '*=' in line:
         line="".join(line.split())
         line = line.split('*=')
         if line[1].isdigit():
             variables[line[0]]*=int(line[1])
         else:
-            variables[line[0]]*=variables(line[1])
+            variables[line[0]]*=variables[line[1]]
     elif '/=' in line:
         line="".join(line.split())
         line = line.split('/=')
         if line[1].isdigit():
             variables[line[0]]//=int(line[1])
         else:
-            variables[line[0]]//=variables(line[1])
+            variables[line[0]]//=variables[line[1]]
     elif '=' in line:
         line = "".join(line.split())
         line=line.split('=')
         if line[1].isdigit():
+
             variables[line[0]]=int(line[1])
+
         else:
             variables[line[0]]=variables[line[1]]
